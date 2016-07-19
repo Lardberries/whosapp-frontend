@@ -1,16 +1,12 @@
-import React, {
+import React, { Component } from 'react';
+import {
   AppRegistry,
   StyleSheet,
   Text,
-  View,
+  View
 } from 'react-native';
 
-class ConvoView extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
+export default class ConvoView extends Component {
   render() {
     return (
       <View>
