@@ -11,9 +11,9 @@ export default class ConvoRow extends Component {
   render() {
     return (
       <View>
-        <Text style={styles.emoji}>this.props.emoji</Text>
-        { this.props.messages.map(message =>
-          <Text>{message}</Text>
+        <Text style={styles.emoji}>{this.props.emoji}</Text>
+        { this.props.messages.map((message, i) =>
+          <Text key={i}>{message.content}</Text>
         ) }
       </View>
     );
