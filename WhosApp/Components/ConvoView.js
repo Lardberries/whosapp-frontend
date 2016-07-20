@@ -20,7 +20,7 @@ export default class ConvoView extends Component {
 
     setTimeout(() => {
       moreMessages = this._getMessages()
-      moreMessages.push({
+      moreMessages.unshift({
         emoji: '🐢',
         color: 'purple',
         messages: [
@@ -39,7 +39,22 @@ export default class ConvoView extends Component {
         emoji: '🐼',
         color: '#D66D6D',
         messages: [
-          {content:'Do they have any food or should I go to Starbucks first', time:'5:12'}
+          {content:'Walk to the back of the building. Elevators there', time:'5:12'}
+        ],
+      },
+      {
+        emoji: '🐙',
+        color: '#6DABD6',
+        messages: [
+          {content:'I have never been in this building before...', time:'5:12'},
+          {content:'Why does the elevator only go to 2', time:'5:12'}
+        ],
+      },
+      {
+        emoji: '🐼',
+        color: '#D66D6D',
+        messages: [
+          {content:'Walk to the back of the building. Elevators there', time:'5:12'}
         ],
       },
       {
@@ -55,29 +70,13 @@ export default class ConvoView extends Component {
         emoji: '🐼',
         color: '#D66D6D',
         messages: [
-          {content:'Walk to the back of the building. Elevators there', time:'5:12'}
-        ],
-      },
-      {
-        emoji: '🐙',
-        color: '#6DABD6',
-        messages: [
-          {content:'I have never been in this buildings dfsd fsdf before...', time:'5:12'},
-          {content:'Why does the elevator only go to 2', time:'5:12'}
-        ],
-      },
-      {
-        emoji: '🐼',
-        color: '#D66D6D',
-        messages: [
-          {content:'Walk to the back of the building. Elevators there', time:'5:12'}
+          {content:'Do they have any food or should I go to Starbucks first', time:'5:12'}
         ],
       },
     ];
   }
 
   render() {
-    messagesTemp = this.state.messages;
     return (
       <View style={{ flex: 1 }}>
         <ListView
