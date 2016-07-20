@@ -38,6 +38,7 @@ export default class WhosApp extends Component {
         initialRoute={{
           component: ThreadView,
           title: 'WhosApp',
+          passProps: {authToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfYnNvbnR5cGUiOiJPYmplY3RJRCIsImlkIjoiV8KPwq_CvMKVw6VcdTAwMWTCmsKvwpFOXHUwMDAwIiwiaWF0IjoxNDY5MDM0NDI5LCJleHAiOjE0NjkxMjA4Mjl9.uwsEJR5Ea9MdJejE1kO2B2f-gM_MBOikj4ckRrEyvuw'},
           leftButtonTitle: '⚙',
           rightButtonTitle: '➕',
           onLeftButtonPress: () => this._onLeftButtonPress(),
