@@ -6,6 +6,7 @@ import {
   ListView,
   View
 } from 'react-native';
+import InvertibleScrollView from 'react-native-invertible-scroll-view';
 
 import ConvoRow from './ConvoRow';
 
@@ -80,6 +81,7 @@ export default class ConvoView extends Component {
     return (
       <View style={{ flex: 1 }}>
         <ListView
+          renderScrollComponent={props => <InvertibleScrollView {...props} inverted />}
           dataSource={this.state.dataSource}
           renderRow={(rowData) => <ConvoRow messages={rowData} />}
         />
