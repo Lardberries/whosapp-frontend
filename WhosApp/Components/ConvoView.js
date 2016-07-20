@@ -27,9 +27,9 @@ export default class ConvoView extends Component {
           {content:'Wait who said that?', time:'5:12'}
         ],
       });
-      this.setState({ dataSource: this.state.dataSource.cloneWithRows(
-        moreMessages
-      ) });
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(moreMessages) ,
+      });
     }, 1000);
   }
 
