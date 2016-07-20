@@ -14,7 +14,7 @@ export default class ConvoView extends Component {
     return (
       <View>
         <Text style={styles.red}>just red</Text>
-        <ConvoRow emoji='emoji' messages={messagesTemp} />
+        <ConvoRow emoji='🙈' messages={messagesTemp} />
       </View>
     );
   }
