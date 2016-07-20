@@ -13,7 +13,6 @@ export default class ConvoView extends Component {
     messagesTemp = [{content:'message1', time:'5:12'}, {content:'message2', time:'5:12'}];
     return (
       <View>
-        <Text style={styles.red}>just red</Text>
         <ConvoRow emoji='🙈' messages={messagesTemp} />
       </View>
     );
@@ -21,7 +20,4 @@ export default class ConvoView extends Component {
 }
 
 const styles = StyleSheet.create({
-  red: {
-     color: 'red',
-  },
 });
