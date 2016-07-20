@@ -1,6 +1,6 @@
 /**
  *  MSFT Hackathon Project: WhosApp
- *  Application launch screen
+ *  Application launch and navigation
  */
 
 import React, { Component, PropTypes } from 'react';
@@ -11,6 +11,10 @@ import {
   Text,
   View
 } from 'react-native';
+
+import ThreadView from './Components/ThreadView';
+import SettingsView from './Components/SettingsView';
+import NewMessageView from './Components/NewMessageView';
 
 export default class WhosApp extends Component {
   _onLeftButtonPress() {
@@ -47,45 +51,6 @@ export default class WhosApp extends Component {
     );
   }
 }
-
-class ThreadView extends Component {
-  render() {
-    return (
-      <View style={styles.fillerText}>
-        <Text>Chat Threads!</Text>
-      </View>
-    );
-  }
-}
-
-class NewMessageView extends Component {
-  render() {
-    return (
-      <View style={styles.fillerText}>
-        <Text>New Message!</Text>
-      </View>
-    );
-  }
-}
-
-class SettingsView extends Component {
-  render() {
-    return (
-      <View style={styles.fillerText}>
-        <Text>Settings!</Text>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  fillerText: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-});
 
 AppRegistry.registerComponent('WhosApp', () => WhosApp);
 
