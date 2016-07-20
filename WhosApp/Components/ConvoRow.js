@@ -12,7 +12,7 @@ import MessageGroup from './MessageGroup';
 export default class ConvoRow extends Component {
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text style={styles.emoji}>{this.props.emoji}</Text>
         <MessageGroup style={styles.messages} messages={this.props.messages}/>
       </View>
@@ -21,11 +21,18 @@ export default class ConvoRow extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    margin: 15,
+  },
   emoji: {
      fontSize: 30,
   },
   messages: {
     borderLeftWidth: 2,
     borderLeftColor: '#6DABD6',
+    marginLeft: 10,
+    marginTop: 6,
+    flex: 1,
   }
 });

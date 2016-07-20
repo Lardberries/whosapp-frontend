@@ -29,5 +29,8 @@ const styles = StyleSheet.create({
     fontSize: 15,
     lineHeight: 19,
     color: '#3B3B3B',
+    paddingLeft: 8,
+    paddingRight: 8,
+    paddingBottom: 5,
   }
 });

@@ -11,7 +11,7 @@ import ConvoRow from './ConvoRow';
 export default class ConvoView extends Component {
   render() {
     messagesTemp = [
-      {content:'I have never been in this building before...', time:'5:12'},
+      {content:'I have never been in this buildings dfsd fsdf before...', time:'5:12'},
       {content:'Why does the elevator only go to 2', time:'5:12'}
     ];
     return (
