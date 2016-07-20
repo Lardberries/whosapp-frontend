@@ -33,47 +33,73 @@ export default class ConvoView extends Component {
     }, 1000);
   }
 
+  _getMessageDetails(object) {
+    return {
+      content: object.content,
+      time: object.time,
+      _id: object._id,
+      seq: object.seq,
+    };
+  }
+
   _getMessages() {
-    return [
-      {
-        emoji: '🐼',
-        color: '#D66D6D',
-        messages: [
-          {content:'Walk to the back of the building. Elevators there', time:'5:12'}
-        ],
-      },
-      {
-        emoji: '🐙',
-        color: '#6DABD6',
-        messages: [
-          {content:'I have never been in this building before...', time:'5:12'},
-          {content:'Why does the elevator only go to 2', time:'5:12'}
-        ],
-      },
-      {
-        emoji: '🐼',
-        color: '#D66D6D',
-        messages: [
-          {content:'Walk to the back of the building. Elevators there', time:'5:12'}
-        ],
-      },
-      {
-        emoji: '🐥',
-        color: '#99C764',
-        messages: [
-          {content:'Go to Starbucks', time:'5:12'},
-          {content:'Actually we are probably going to get breakfast', time:'5:12'},
-          {content:'Come to 1CC', time:'5:12'}
-        ],
-      },
-      {
-        emoji: '🐼',
-        color: '#D66D6D',
-        messages: [
-          {content:'Do they have any food or should I go to Starbucks first', time:'5:12'}
-        ],
-      },
+    // chatMessages = getChatMessages(this.props.chatId);
+    chatMessages = [
+       {
+          emoji:"🎓",
+          color:"#9DC3D4",
+          _id:"578fd2de82432561078f3b1a",
+          seq:2,
+          time:"2016-07-20T19:37:02.561Z",
+          content:"gimme a color"
+       },
+       {
+          emoji:"😎",
+          color:"#ECEF89",
+          _id:"578fc7aa82432561078f3b19",
+          seq:1,
+          time:"2016-07-20T18:49:14.087Z",
+          content:"i don't like that color"
+       },
+       {
+          emoji:"😎",
+          color:"#ECEF89",
+          _id:"578fc6fd8ac52e5907272469",
+          seq:0,
+          time:"2016-07-20T18:46:21.963Z",
+          content:"gimme a color"
+       },
+       {
+          emoji:"🎓",
+          color:"#9DC3D4",
+          _id:"578fd2de82432561078fpb1a",
+          seq:2,
+          time:"2016-07-20T18:37:02.561Z",
+          content:"wuddup"
+       },
     ];
+
+    cleanMessages = [];
+    for (i = 0; i < chatMessages.length; i++) {
+      object1 = chatMessages[i];
+      var messages = [this._getMessageDetails(object1)];
+
+      for (j = i + 1; j < chatMessages.length; j++) {
+        object2 = chatMessages[j];
+        if (object1.emoji === object2.emoji) {
+          messages.push(this._getMessageDetails(object2));
+          chatMessages.splice(j, 1);
+        } else {
+          break;
+        }
+      }
+      cleanMessages.push({
+        emoji: object1.emoji,
+        color: object1.color,
+        messages: messages
+      })
+    }
+    return cleanMessages;
   }
 
   render() {
