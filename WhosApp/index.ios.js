@@ -38,8 +38,8 @@ export default class WhosApp extends Component {
         initialRoute={{
           component: ThreadView,
           title: 'WhosApp',
-          leftButtonTitle: 'Settings',
-          rightButtonTitle: 'New',
+          leftButtonTitle: '⚙',
+          rightButtonTitle: '➕',
           onLeftButtonPress: () => this._onLeftButtonPress(),
           onRightButtonPress: () => this._onRightButtonPress(),
         }}
