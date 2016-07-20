@@ -10,7 +10,7 @@ import ConvoRow from './ConvoRow';
 
 export default class ConvoView extends Component {
   render() {
-    messagesTemp = ['message1', 'message2'];
+    messagesTemp = [{content:'message1', time:'5:12'}, {content:'message2', time:'5:12'}];
     return (
       <View>
         <Text style={styles.red}>just red</Text>
