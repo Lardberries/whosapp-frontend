@@ -1,53 +1,91 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
+ *  MSFT Hackathon Project: WhosApp
+ *  Application launch screen
  */
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   AppRegistry,
+  NavigatorIOS,
   StyleSheet,
   Text,
   View
 } from 'react-native';
 
-class WhosApp extends Component {
+export default class WhosApp extends Component {
+  _onLeftButtonPress() {
+    this.refs.nav.push({
+      component: SettingsView,
+      title: 'Settings',
+    });
+  }
+
+  _onRightButtonPress() {
+    this.refs.nav.push({
+      component: NewMessageView,
+      title: 'New Message',
+    });
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+      <NavigatorIOS
+        ref='nav'
+        initialRoute={{
+          component: ThreadView,
+          title: 'WhosApp',
+          leftButtonTitle: 'Settings',
+          rightButtonTitle: 'New',
+          onLeftButtonPress: () => this._onLeftButtonPress(),
+          onRightButtonPress: () => this._onRightButtonPress(),
+        }}
+
+        style={{ flex: 1 }}
+        barTintColor='#551A8B'
+        tintColor='white'
+      />
+    );
+  }
+}
+
+class ThreadView extends Component {
+  render() {
+    return (
+      <View style={styles.fillerText}>
+        <Text>Chat Threads!</Text>
+      </View>
+    );
+  }
+}
+
+class NewMessageView extends Component {
+  render() {
+    return (
+      <View style={styles.fillerText}>
+        <Text>New Message!</Text>
+      </View>
+    );
+  }
+}
+
+class SettingsView extends Component {
+  render() {
+    return (
+      <View style={styles.fillerText}>
+        <Text>Settings!</Text>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  fillerText: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+
 });
 
 AppRegistry.registerComponent('WhosApp', () => WhosApp);
+
