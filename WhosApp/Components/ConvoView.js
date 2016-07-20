@@ -3,6 +3,7 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
+  ListView,
   View
 } from 'react-native';
 
@@ -11,9 +12,24 @@ import ConvoRow from './ConvoRow';
 export default class ConvoView extends Component {
   constructor(props) {
     super(props);
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
   	this.state = {
-  		messages: this._getMessages(),
+  		dataSource: ds.cloneWithRows(this._getMessages()),
   	};
+
+    setTimeout(() => {
+      moreMessages = this._getMessages()
+      moreMessages.push({
+        emoji: '🐢',
+        color: 'purple',
+        messages: [
+          {content:'Wait who said that?', time:'5:12'}
+        ],
+      });
+      this.setState({ dataSource: this.state.dataSource.cloneWithRows(
+        moreMessages
+      ) });
+    }, 1000);
   }
 
   _getMessages() {
@@ -62,10 +78,11 @@ export default class ConvoView extends Component {
   render() {
     messagesTemp = this.state.messages;
     return (
-      <View>
-        {messagesTemp.map((messages, i) =>
-          <ConvoRow emoji={messages.emoji} color={messages.color} messages={messages.messages} key={i}/>
-        )}
+      <View style={{ flex: 1 }}>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={(rowData) => <ConvoRow messages={rowData} />}
+        />
       </View>
     );
   }

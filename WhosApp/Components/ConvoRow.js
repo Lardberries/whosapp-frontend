@@ -13,8 +13,8 @@ export default class ConvoRow extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.emoji}>{this.props.emoji}</Text>
-        <MessageGroup style={[styles.messages, {borderLeftColor: this.props.color}]} messages={this.props.messages}/>
+        <Text style={styles.emoji}>{this.props.messages.emoji}</Text>
+        <MessageGroup style={[styles.messages, {borderLeftColor: this.props.messages.color}]} messages={this.props.messages.messages}/>
       </View>
     );
   }
