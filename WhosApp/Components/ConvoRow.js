@@ -34,5 +34,6 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginTop: 6,
     flex: 1,
+    justifyContent: 'center',
   }
 });
