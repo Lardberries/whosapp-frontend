@@ -10,10 +10,13 @@ import ConvoRow from './ConvoRow';
 
 export default class ConvoView extends Component {
   render() {
-    messagesTemp = [{content:'message1', time:'5:12'}, {content:'message2', time:'5:12'}];
+    messagesTemp = [
+      {content:'I have never been in this building before...', time:'5:12'},
+      {content:'Why does the elevator only go to 2', time:'5:12'}
+    ];
     return (
       <View>
-        <ConvoRow emoji='🙈' messages={messagesTemp} />
+        <ConvoRow emoji='🐙' messages={messagesTemp} />
       </View>
     );
   }
