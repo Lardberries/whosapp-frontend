@@ -17,9 +17,9 @@ export default class ThreadView extends Component {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource: ds.cloneWithRows([
-        {emoji: '🙈', name: 'Lardberries1', preview: 'Where is everyone?', date: 'Jun 27', read: false},
-        {emoji: '🐸', name: 'Lardberries2', preview: 'Ayooooo', date: 'Jun 24', read: true},
-        {emoji: '🦁', name: 'Lardberries3', preview: 'Guys, I heard Jake is a Brony', date: 'Jun 24', read: true},
+        {chatId: 5, emoji: '🙈', name: 'Lardberries1', preview: 'Where is everyone?', date: 'Jun 27', read: false},
+        {chatId: 6, emoji: '🐸', name: 'Lardberries2', preview: 'Ayooooo', date: 'Jun 24', read: true},
+        {chadId: 7, emoji: '🦁', name: 'Lardberries3', preview: 'Guys, I heard Jake is a Brony', date: 'Jun 24', read: true},
       ])
     };
   }
@@ -28,6 +28,7 @@ export default class ThreadView extends Component {
     this.props.navigator.push({
       component: ConvoView,
       title: 'Chat Name',
+      passProps: {chatId : chatId},
     });
   }
 
@@ -36,7 +37,11 @@ export default class ThreadView extends Component {
       <View style={{ flex: 1 }}>
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={(rowData) => <TouchableOpacity onPress={() => this._onSelectRow()}><ThreadRow threads={rowData} /></TouchableOpacity>}
+          renderRow={(rowData) =>
+            <TouchableOpacity onPress={() => this._onSelectRow(this.state.dataSource.chatId)}>
+              <ThreadRow threads={rowData} />
+            </TouchableOpacity>
+          }
         />
       </View>
     );
