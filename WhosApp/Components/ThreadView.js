@@ -3,9 +3,11 @@ import {
   ListView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View
 } from 'react-native';
 
+import ConvoView from './ConvoView';
 import ThreadRow from './ThreadRow';
 
 export default class ThreadView extends Component {
@@ -22,12 +24,19 @@ export default class ThreadView extends Component {
     };
   }
 
+  _onSelectRow(chatId) {
+    this.props.navigator.push({
+      component: ConvoView,
+      title: 'Chat Name',
+    });
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={(rowData) => <ThreadRow threads={rowData} />}
+          renderRow={(rowData) => <TouchableOpacity onPress={() => this._onSelectRow()}><ThreadRow threads={rowData} /></TouchableOpacity>}
         />
       </View>
     );
