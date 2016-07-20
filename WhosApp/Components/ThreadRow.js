@@ -10,12 +10,12 @@ export default class ThreadRow extends Component {
   render() {
     return (
       <View style={styles.box}>
-        <Text style={styles.emoji}>{this.props.threads.emoji}</Text>
+        <Text style={styles.emoji}>🙈</Text>
         <View style={styles.multiLineText}>
-          <Text>{this.props.threads.name}</Text>
-          <Text>{this.props.threads.preview}</Text>
+          <Text>{this.props.thread.name}</Text>
+          <Text>{this.props.thread._id}</Text>
         </View>
-        <Text>{this.props.threads.date}</Text>
+        <Text>Jun 27</Text>
       </View>
     );
   }
