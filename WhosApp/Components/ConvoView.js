@@ -10,6 +10,8 @@ import InvertibleScrollView from 'react-native-invertible-scroll-view';
 
 import ConvoRow from './ConvoRow';
 
+import { getChatMessages } from '../Network/APIController'
+
 export default class ConvoView extends Component {
   constructor(props) {
     super(props);
@@ -43,7 +45,7 @@ export default class ConvoView extends Component {
   }
 
   _getMessages() {
-    // chatMessages = getChatMessages(this.props.chatId);
+    chatMessages = getChatMessages(this.props.authToken, this.props.chatId);
     chatMessages = [
        {
           emoji:"🎓",
