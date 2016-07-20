@@ -6,7 +6,7 @@ export const getChats = (id) => {
   return fetch('https://whosapp.matt.how/chat/', {
     method: 'GET',
     headers: {
-      'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfYnNvbnR5cGUiOiJPYmplY3RJRCIsImlkIjoiV8KPwq5IwpXDpVx1MDAxZMKawq_CkU3DvyIsImlhdCI6MTQ2OTAzNDA1NywiZXhwIjoxNDY5MTIwNDU3fQ.kO28x_KaEm0Dn5CTDYvwbuqtEeOmiopssUjYbrkUeZQ',
+      'x-access-token': id,
     },
   })
   .then((response) => response.json())
