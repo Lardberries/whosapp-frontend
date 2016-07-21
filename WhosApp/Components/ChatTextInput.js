@@ -7,6 +7,8 @@ import {
   TextInput
 } from 'react-native';
 
+import { sendMessage } from '../Network/APIController'
+
 export default class ConvoView extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +19,12 @@ export default class ConvoView extends Component {
 
   sendMessage() {
     console.log(this.state.text);
+
+    messagePromise = sendMessage(this.props.authToken, this.props.chatId, this.state.text);
+
+    messagePromise.then((v) => {
+      this.props._getMessages();
+    });
   }
 
   render() {
