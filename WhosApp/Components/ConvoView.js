@@ -45,7 +45,7 @@ export default class ConvoView extends Component {
       for (j = i + 1; j < chatMessages.length; j++) {
         object2 = chatMessages[j];
         if (object1.emoji === object2.emoji) {
-          messages.push(this._getMessageDetails(object2));
+          messages.unshift(this._getMessageDetails(object2));
           chatMessages.splice(j, 1);
         } else {
           break;
