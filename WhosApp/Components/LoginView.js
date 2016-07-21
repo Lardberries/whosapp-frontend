@@ -78,6 +78,7 @@ export default class LoginView extends Component {
 			<View style={styles.container}>
         <Text style={styles.title}>WhosApp</Text>
 				<TextInput
+          autoCapitalize='none'
 					style={styles.inputTextBox}
           placeholder='Username'
           onChangeText={(username) => this.setState({username})}
