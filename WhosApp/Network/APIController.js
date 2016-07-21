@@ -11,7 +11,6 @@ export const getChatThreads = (authToken) => {
   })
   .then((response) => response.json())
   .then((responseJson) => {
-    console.log(responseJson.result);
     return responseJson.result;
   })
   .catch((error) => {
@@ -28,7 +27,6 @@ export const getChatMessages = (authToken, messageID) => {
   })
   .then((response) => response.json())
   .then((responseJson) => {
-    console.log(responseJson.result);
     return responseJson.result;
   })
   .catch((error) => {
