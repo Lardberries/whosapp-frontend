@@ -38,7 +38,6 @@ export default class ThreadView extends Component {
   }
 
   _updateThreads(threads) {
-    console.log('asfasf');
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(threads),
     });
@@ -62,7 +61,7 @@ export default class ThreadView extends Component {
         <ListView
           dataSource={this.state.dataSource}
           renderRow={(rowData) =>
-            <TouchableOpacity onPress={() => this._onSelectRow(rowData.chatId)}>
+            <TouchableOpacity onPress={() => this._onSelectRow(rowData._id)}>
               <ThreadRow thread={rowData} />
             </TouchableOpacity>
           }
