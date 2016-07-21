@@ -22,22 +22,6 @@ export default class ConvoView extends Component {
   	};
 
     this._getMessages();
-
-    setTimeout(() => {
-      moreMessages = this.state.messages;
-      moreMessages.unshift({
-        emoji: '🐢',
-        color: 'purple',
-        messages: [
-          {content:'Wait who said that?', time:'5:12', _id: 'adsf', seq: 5}
-        ],
-      });
-      console.log(moreMessages);
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(moreMessages),
-        messages: moreMessages,
-      });
-    }, 2000);
   }
 
   _getMessageDetails(object) {
