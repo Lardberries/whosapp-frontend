@@ -62,7 +62,7 @@ export default class ThreadView extends Component {
           dataSource={this.state.dataSource}
           renderRow={(rowData) =>
             <TouchableOpacity onPress={() => this._onSelectRow(rowData._id)}>
-              <ThreadRow thread={rowData} />
+              <ThreadRow thread={rowData} authToken={this.props.authToken} chatId={rowData._id}/>
             </TouchableOpacity>
           }
         />
