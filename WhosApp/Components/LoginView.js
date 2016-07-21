@@ -86,6 +86,7 @@ export default class LoginView extends Component {
 					style={styles.inputTextBox}
           placeholder='Password'
           onChangeText={(password) => this.setState({password})}
+          secureTextEntry={true}
 				/>
         <KeyboardSpacer/>
         <View>
