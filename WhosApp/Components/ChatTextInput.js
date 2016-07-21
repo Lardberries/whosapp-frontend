@@ -7,14 +7,41 @@ import {
   TextInput
 } from 'react-native';
 
+import { sendMessage } from '../Network/APIController'
+
 export default class ConvoView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: '',
+    };
+  }
+
+  sendMessage() {
+    console.log(this.state.text);
+
+    messagePromise = sendMessage(this.props.authToken, this.props.chatId, this.state.text);
+
+    messagePromise.then((v) => {
+      this.props._getMessages();
+    });
+  }
+
   render() {
+    var _textInput: TextInput;
     return (
       <View style={styles.container}>
         <TextInput
+            ref={(textInput) => { _textInput = textInput; }}
             style={styles.textInput}
             placeholder={this.props.placeholder}
+            returnKeyType='send'
             onChangeText={(text) => this.setState({text})}
+            blurOnSubmit={false}
+            onSubmitEditing={() => {
+              this.sendMessage();
+              _textInput.clear();
+            }}
           />
       </View>
     );

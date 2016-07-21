@@ -70,8 +70,10 @@ export default class ConvoView extends Component {
 
   _getMessages() {
     chatMessagesPromise = getChatMessages(this.props.authToken, this.props.chatId);
+    console.log('getting messages');
 
     chatMessagesPromise.then((v) => {
+      console.log(v);
       cleanMessages = this._groupNeighbors(v);
       this._updateMessages(cleanMessages);
     });
@@ -87,7 +89,7 @@ export default class ConvoView extends Component {
           enableEmptySections={true}
           renderRow={(rowData) => <ConvoRow messages={rowData} />}
         />
-        <ChatTextInput placeholder="Type a message..."/>
+      <ChatTextInput placeholder="Type a message..." {...this.props} _getMessages={this._getMessages}/>
         <KeyboardSpacer/>
       </View>
     );
