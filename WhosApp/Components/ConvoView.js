@@ -89,6 +89,7 @@ export default class ConvoView extends Component {
       <View style={{ flex: 1 }}>
         <ListView
           style={styles.convoArea}
+          automaticallyAdjustContentInsets={false}
           renderScrollComponent={props => <InvertibleScrollView {...props} inverted />}
           dataSource={this.state.dataSource}
           enableEmptySections={true}
@@ -104,6 +105,8 @@ export default class ConvoView extends Component {
 const styles = StyleSheet.create({
   convoArea: {
     flex: 1,
-    backgroundColor: '#F7F7F7'
+    backgroundColor: '#F7F7F7',
+    paddingTop: 15,
+    marginTop: 64
   },
 });
