@@ -24,9 +24,13 @@ export default class ConvoView extends Component {
 
     this._getMessages();
 
-    setInterval(() => {
+    this._timer = setInterval(() => {
       this._getMessages();
     }, 4000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this._timer);
   }
 
   _getMessageDetails(object) {
@@ -90,7 +94,7 @@ export default class ConvoView extends Component {
           enableEmptySections={true}
           renderRow={(rowData) => <ConvoRow messages={rowData} />}
         />
-      <ChatTextInput placeholder="Type a message..." {...this.props} _getMessages={this._getMessages.bind(this)}/>
+        <ChatTextInput placeholder="Type a message..." {...this.props} _getMessages={this._getMessages.bind(this)}/>
         <KeyboardSpacer/>
       </View>
     );
