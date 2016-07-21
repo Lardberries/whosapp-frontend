@@ -13,12 +13,15 @@ import NewMessageView from './NewMessageView';
 
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
+import { login } from '../Network/APIController';
+
 export default class LoginView extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			username: '',
 			password: '',
+      authToken: '',
 		};
 	}
 
@@ -39,20 +42,36 @@ export default class LoginView extends Component {
 	_onLoginButtonPress() {
     let username = this.state.username;
     let password = this.state.password;
-    console.log(username);
-    console.log(password);
-		this.props.navigator.push({
-      component: ThreadView,
-      title: 'WhosApp',
-      passProps: {
-        authToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfYnNvbnR5cGUiOiJPYmplY3RJRCIsImlkIjoiV8KPwq_CvMKVw6VcdTAwMWTCmsKvwpFOXHUwMDAwIiwiaWF0IjoxNDY5MDM0NDI5LCJleHAiOjE0NjkxMjA4Mjl9.uwsEJR5Ea9MdJejE1kO2B2f-gM_MBOikj4ckRrEyvuw',
-      },
-      leftButtonTitle: '⚙',
-      rightButtonTitle: '➕',
-      onLeftButtonPress: () => this._onLeftButtonPress(),
-      onRightButtonPress: () => this._onRightButtonPress(),
+    loginPromise = login(username, password);
+    loginPromise.then((loginResult) => {
+      this._getAuthToken(loginResult);
+      if (loginResult.success == true) {
+        console.log(this.state.authToken);
+    		this.props.navigator.push({
+          component: ThreadView,
+          title: 'WhosApp',
+          passProps: {
+            authToken: this.state.authToken,
+          },
+          leftButtonTitle: '⚙',
+          rightButtonTitle: '➕',
+          onLeftButtonPress: () => this._onLeftButtonPress(),
+          onRightButtonPress: () => this._onRightButtonPress(),
+        });
+      } else {
+        // Handle login failure...
+      }
     });
 	}
+
+  _getAuthToken(loginResult) {
+    if (loginResult.success == true) {
+      this.setState({
+        authToken: loginResult.result,
+      });
+      console.log('Login success');
+    }
+  }
 
 	render() {
 		return (

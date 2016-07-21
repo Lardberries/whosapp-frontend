@@ -3,7 +3,7 @@
 const BASE_URL = 'https://whosapp.matt.how';
 
 export const getChatThreads = (authToken) => {
-  return fetch(BASE_URL + '/chat/', {
+  return fetch(BASE_URL+'/chat/', {
     method: 'GET',
     headers: {
       'x-access-token': authToken,
@@ -48,6 +48,29 @@ export const sendMessage = (authToken, messageID, content) => {
   .then((response) => response.json())
   .then((responseJson) => {
     return responseJson.success;
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+}
+
+export const login = (username, password) => {
+  console.log(username);
+  console.log(password);
+  return fetch(BASE_URL+'/user/login/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      username: username,
+      password: password,
+    })
+  })
+  .then((response) => response.json())
+  .then((responseJson) => {
+    console.log(responseJson);
+    return responseJson;
   })
   .catch((error) => {
     console.error(error);
