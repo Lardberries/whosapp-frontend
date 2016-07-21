@@ -17,22 +17,27 @@ export default class ConvoView extends Component {
     super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
   	this.state = {
-  		dataSource: ds.cloneWithRows(this._getMessages()),
+  		dataSource: ds.cloneWithRows([]),
+      messages: [],
   	};
 
+    this._getMessages();
+
     setTimeout(() => {
-      moreMessages = this._getMessages()
+      moreMessages = this.state.messages;
       moreMessages.unshift({
         emoji: '🐢',
         color: 'purple',
         messages: [
-          {content:'Wait who said that?', time:'5:12'}
+          {content:'Wait who said that?', time:'5:12', _id: 'adsf', seq: 5}
         ],
       });
+      console.log(moreMessages);
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(moreMessages) ,
+        dataSource: this.state.dataSource.cloneWithRows(moreMessages),
+        messages: moreMessages,
       });
-    }, 1000);
+    }, 2000);
   }
 
   _getMessageDetails(object) {
@@ -44,43 +49,8 @@ export default class ConvoView extends Component {
     };
   }
 
-  _getMessages() {
-    chatMessages = getChatMessages(this.props.authToken, this.props.chatId);
-    chatMessages = [
-       {
-          emoji:"🎓",
-          color:"#9DC3D4",
-          _id:"578fd2de82432561078f3b1a",
-          seq:2,
-          time:"2016-07-20T19:37:02.561Z",
-          content:"gimme a color"
-       },
-       {
-          emoji:"😎",
-          color:"#ECEF89",
-          _id:"578fc7aa82432561078f3b19",
-          seq:1,
-          time:"2016-07-20T18:49:14.087Z",
-          content:"i don't like that color"
-       },
-       {
-          emoji:"😎",
-          color:"#ECEF89",
-          _id:"578fc6fd8ac52e5907272469",
-          seq:0,
-          time:"2016-07-20T18:46:21.963Z",
-          content:"gimme a color"
-       },
-       {
-          emoji:"🎓",
-          color:"#9DC3D4",
-          _id:"578fd2de82432561078fpb1a",
-          seq:2,
-          time:"2016-07-20T18:37:02.561Z",
-          content:"wuddup"
-       },
-    ];
-
+  // merges together messages if they are from the same sender
+  _groupNeighbors(chatMessages) {
     cleanMessages = [];
     for (i = 0; i < chatMessages.length; i++) {
       object1 = chatMessages[i];
@@ -104,12 +74,30 @@ export default class ConvoView extends Component {
     return cleanMessages;
   }
 
+  // given an array of messags updates the state to include these messages
+  _updateMessages(messages) {
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(messages),
+      messages: messages,
+    });
+  }
+
+  _getMessages() {
+    chatMessagesPromise = getChatMessages(this.props.authToken, this.props.chatId);
+
+    chatMessagesPromise.then((v) => {
+      cleanMessages = this._groupNeighbors(v);
+      this._updateMessages(cleanMessages);
+    });
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
         <ListView
           renderScrollComponent={props => <InvertibleScrollView {...props} inverted />}
           dataSource={this.state.dataSource}
+          enableEmptySections={true}
           renderRow={(rowData) => <ConvoRow messages={rowData} />}
         />
       </View>
