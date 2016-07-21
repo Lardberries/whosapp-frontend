@@ -37,7 +37,6 @@ export default class ThreadView extends Component {
   }
 
   _onSelectRow(chatId) {
-    console.log(chatId);
     this.props.navigator.push({
       component: ConvoView,
       title: 'Chat Name',
