@@ -18,7 +18,13 @@ export default class ConvoView extends Component {
   }
 
   sendMessage() {
+    if (this.state.text.length === 0) {
+      return;
+    }
     console.log(this.state.text);
+    this.setState({
+      text: '',
+    });
 
     messagePromise = sendMessage(this.props.authToken, this.props.chatId, this.state.text);
 
