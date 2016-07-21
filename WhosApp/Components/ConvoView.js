@@ -24,6 +24,10 @@ export default class ConvoView extends Component {
   	};
 
     this._getMessages();
+
+    setInterval(() => {
+      this._getMessages();
+    }, 4000);
   }
 
   _getMessageDetails(object) {
