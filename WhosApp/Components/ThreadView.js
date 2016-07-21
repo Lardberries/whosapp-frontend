@@ -26,6 +26,22 @@ export default class ThreadView extends Component {
         ]
       )
     };
+    this._getThreads();
+  }
+
+  _getThreads() {
+    chatThreadsPromise = getChatThreads(this.props.authToken);
+
+    chatThreadsPromise.then((v) => {
+      this._updateThreads(v);
+    });
+  }
+
+  _updateThreads(threads) {
+    console.log('asfasf');
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(threads),
+    });
   }
 
   _onSelectRow(chatId) {
