@@ -17,14 +17,7 @@ export default class ThreadView extends Component {
     super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows( //getChatThreads(this.props.authToken)
-        // Initialize hardcoded data
-        [
-          {chatId: 5, emoji: '🙈', name: 'Lardberries1', _id: 'Where is everyone?', date: 'Jun 27', read: false},
-          {chatId: 6, emoji: '🐸', name: 'Lardberries2', _id: 'Ayooooo', date: 'Jun 24', read: true},
-          {chadId: 7, emoji: '🦁', name: 'Lardberries3', _id: 'Guys, I heard Jake is a Brony', date: 'Jun 24', read: true},
-        ]
-      )
+      dataSource: ds.cloneWithRows([])
     };
     this._getThreads();
   }
@@ -60,6 +53,7 @@ export default class ThreadView extends Component {
       <View style={{ flex: 1 }}>
         <ListView
           dataSource={this.state.dataSource}
+          enableEmptySections={true}
           renderRow={(rowData) =>
             <TouchableOpacity onPress={() => this._onSelectRow(rowData._id)}>
               <ThreadRow thread={rowData} authToken={this.props.authToken} chatId={rowData._id}/>
