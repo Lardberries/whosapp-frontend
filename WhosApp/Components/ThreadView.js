@@ -33,7 +33,10 @@ export default class ThreadView extends Component {
     this.props.navigator.push({
       component: ConvoView,
       title: 'Chat Name',
-      passProps: {chatId: chatId},
+      passProps: {
+        authToken: this.props.authToken,
+        chatId : chatId
+      },
     });
   }
 
@@ -43,7 +46,7 @@ export default class ThreadView extends Component {
         <ListView
           dataSource={this.state.dataSource}
           renderRow={(rowData) =>
-            <TouchableOpacity onPress={() => this._onSelectRow(rowData._id)}>
+            <TouchableOpacity onPress={() => this._onSelectRow(rowData.chatId)}>
               <ThreadRow thread={rowData} />
             </TouchableOpacity>
           }
