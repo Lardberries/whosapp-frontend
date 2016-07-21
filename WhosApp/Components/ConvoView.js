@@ -47,6 +47,7 @@ export default class ConvoView extends Component {
         if (object1.emoji === object2.emoji) {
           messages.unshift(this._getMessageDetails(object2));
           chatMessages.splice(j, 1);
+          j = j-1;
         } else {
           break;
         }
@@ -70,10 +71,8 @@ export default class ConvoView extends Component {
 
   _getMessages() {
     chatMessagesPromise = getChatMessages(this.props.authToken, this.props.chatId);
-    console.log('getting messages');
 
     chatMessagesPromise.then((v) => {
-      console.log(v);
       cleanMessages = this._groupNeighbors(v);
       this._updateMessages(cleanMessages);
     });
@@ -89,7 +88,7 @@ export default class ConvoView extends Component {
           enableEmptySections={true}
           renderRow={(rowData) => <ConvoRow messages={rowData} />}
         />
-      <ChatTextInput placeholder="Type a message..." {...this.props} _getMessages={this._getMessages}/>
+      <ChatTextInput placeholder="Type a message..." {...this.props} _getMessages={this._getMessages.bind(this)}/>
         <KeyboardSpacer/>
       </View>
     );
