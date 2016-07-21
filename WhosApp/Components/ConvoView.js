@@ -7,6 +7,7 @@ import {
   View
 } from 'react-native';
 import InvertibleScrollView from 'react-native-invertible-scroll-view';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import ConvoRow from './ConvoRow';
 import ChatTextInput from './ChatTextInput';
@@ -87,6 +88,7 @@ export default class ConvoView extends Component {
           renderRow={(rowData) => <ConvoRow messages={rowData} />}
         />
         <ChatTextInput placeholder="Type a message..."/>
+        <KeyboardSpacer/>
       </View>
     );
   }
@@ -94,6 +96,7 @@ export default class ConvoView extends Component {
 
 const styles = StyleSheet.create({
   convoArea: {
+    flex: 1,
     backgroundColor: '#F7F7F7'
   },
 });
