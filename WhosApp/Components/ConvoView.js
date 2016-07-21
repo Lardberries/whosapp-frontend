@@ -20,7 +20,6 @@ export default class ConvoView extends Component {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
   	this.state = {
   		dataSource: ds.cloneWithRows([]),
-      messages: [],
   	};
 
     this._getMessages();
@@ -69,7 +68,6 @@ export default class ConvoView extends Component {
   _updateMessages(messages) {
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(messages),
-      messages: messages,
     });
   }
 
