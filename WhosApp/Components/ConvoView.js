@@ -9,6 +9,7 @@ import {
 import InvertibleScrollView from 'react-native-invertible-scroll-view';
 
 import ConvoRow from './ConvoRow';
+import ChatTextInput from './ChatTextInput';
 
 import { getChatMessages } from '../Network/APIController'
 
@@ -79,15 +80,20 @@ export default class ConvoView extends Component {
     return (
       <View style={{ flex: 1 }}>
         <ListView
+          style={styles.convoArea}
           renderScrollComponent={props => <InvertibleScrollView {...props} inverted />}
           dataSource={this.state.dataSource}
           enableEmptySections={true}
           renderRow={(rowData) => <ConvoRow messages={rowData} />}
         />
+        <ChatTextInput placeholder="Type a message..."/>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  convoArea: {
+    backgroundColor: '#F7F7F7'
+  },
 });
