@@ -39,7 +39,7 @@ export default class ThreadView extends Component {
   _onSelectRow(chatId) {
     this.props.navigator.push({
       component: ConvoView,
-      title: 'Chat Name',
+      title: 'Chat',
       passProps: {
         authToken: this.props.authToken,
         chatId : chatId
