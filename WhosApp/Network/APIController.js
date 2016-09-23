@@ -1,6 +1,6 @@
 'use strict';
 
-const BASE_URL = 'https://whosapp.matt.how';
+const BASE_URL = 'http://localhost:3000';
 
 export const getChatThreads = (authToken) => {
   return fetch(BASE_URL+'/chat/', {
