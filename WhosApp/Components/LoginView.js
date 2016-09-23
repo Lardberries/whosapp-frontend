@@ -44,33 +44,34 @@ export default class LoginView extends Component {
     let password = this.state.password;
     loginPromise = login(username, password);
     loginPromise.then((loginResult) => {
-      this._getAuthToken(loginResult);
       if (loginResult.success == true) {
-        console.log(this.state.authToken);
-    		this.props.navigator.push({
-          component: ThreadView,
-          title: 'WhosApp',
-          passProps: {
-            authToken: this.state.authToken,
-          },
-          leftButtonTitle: '⚙',
-          rightButtonTitle: '➕',
-          onLeftButtonPress: () => this._onLeftButtonPress(),
-          onRightButtonPress: () => this._onRightButtonPress(),
-        });
+        console.log('Login success');
+        this._setAuthToken(loginResult.result);
+        this._showThreads();
       } else {
         // Handle login failure...
       }
     });
 	}
 
-  _getAuthToken(loginResult) {
-    if (loginResult.success == true) {
-      this.setState({
-        authToken: loginResult.result,
-      });
-      console.log('Login success');
-    }
+  _setAuthToken(authToken) {
+    this.setState({
+      authToken: loginResult.result,
+    });
+  }
+
+  _showThreads() {
+    this.props.navigator.push({
+      component: ThreadView,
+      title: 'WhosApp',
+      passProps: {
+        authToken: this.state.authToken,
+      },
+      leftButtonTitle: '⚙',
+      rightButtonTitle: '➕',
+      onLeftButtonPress: () => this._onLeftButtonPress(),
+      onRightButtonPress: () => this._onRightButtonPress(),
+    });
   }
 
 	render() {
