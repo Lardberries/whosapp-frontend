@@ -76,3 +76,30 @@ export const login = (username, password) => {
     console.error(error);
   });
 }
+
+export const register = (username, password, name, phone) => {
+  console.log(username);
+  console.log(password);
+  console.log(name);
+  console.log(phone);
+  return fetch(BASE_URL+'/user/register/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      username: username,
+      password: password,
+      name: name,
+      phone: phone,
+    })
+  })
+  .then((response) => response.json())
+  .then((responseJson) => {
+    console.log(responseJson);
+    return responseJson;
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+}
