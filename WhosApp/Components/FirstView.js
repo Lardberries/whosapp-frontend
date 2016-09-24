@@ -30,23 +30,35 @@ export default class LoginView extends Component {
         <Image style={styles.image} source={require('../Images/Icon-163x163.png')} />
         <Text style={styles.title}>WhosApp</Text>
         <View style={styles.bottomRow}>
-          <View style={styles.logIn}>
-            <Text style={styles.buttonText}>LOG IN</Text>
-          </View>
-          <View style={styles.signUp}>
-            <Text style={styles.buttonText}>SIGN UP</Text>
-          </View>
+          <TouchableHighlight style={styles.bottomButton} onPress={() => this._onLoginButtonPress()}>
+            <View style={styles.logIn}>
+              <Text style={styles.buttonText}>LOG IN</Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight style={styles.bottomButton} onPress={() => this._onRegisterButtonPress()}>
+            <View style={styles.signUp}>
+              <Text style={styles.buttonText}>SIGN UP</Text>
+            </View>
+          </TouchableHighlight>
         </View>
 			</View>
 		);
 	}
+
+  _onLoginButtonPress() {
+
+  }
+
+  _onRegisterButtonPress() {
+
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#BB29BB',
+    backgroundColor: '#CC54D5',
   },
   image: {
     marginTop: 145,
@@ -66,9 +78,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
   },
+  bottomButton: {
+    flex: 1,
+  },
   logIn: {
     flex: 1,
-    backgroundColor: '#DD94DD',
+    backgroundColor: '#E5A9EA',
     justifyContent: 'center',
     alignItems: 'center',
   },
