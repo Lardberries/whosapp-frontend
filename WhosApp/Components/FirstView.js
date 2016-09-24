@@ -42,7 +42,6 @@ export default class FirstView extends Component {
   _onLoginButtonPress() {
     this.props.navigator.push({
       component: LoginView,
-      title: 'WhosApp',
     });
   }
 

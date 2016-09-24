@@ -30,8 +30,9 @@ export default class WhosApp extends Component {
         }}
 
         style={{ flex: 1 }}
-        barTintColor='#551A8B'
-        tintColor='white'
+        barTintColor='white'
+        shadowHidden={true}
+        tintColor='#CC54D5'
       />
     );
   }
