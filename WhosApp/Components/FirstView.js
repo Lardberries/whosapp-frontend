@@ -43,13 +43,6 @@ export default class FirstView extends Component {
     this.props.navigator.push({
       component: LoginView,
       title: 'WhosApp',
-      passProps: {
-        authToken: this.state.authToken,
-      },
-      leftButtonTitle: '⚙',
-      rightButtonTitle: '➕',
-      onLeftButtonPress: () => this._onLeftButtonPress(),
-      onRightButtonPress: () => this._onRightButtonPress(),
     });
   }
 
