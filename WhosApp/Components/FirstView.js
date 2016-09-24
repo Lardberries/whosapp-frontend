@@ -10,7 +10,7 @@ import {
 
 import LoginView from './LoginView';
 
-export default class LoginView extends Component {
+export default class FirstView extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
