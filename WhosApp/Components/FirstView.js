@@ -8,13 +8,7 @@ import {
   Image
 } from 'react-native';
 
-import ThreadView from './ThreadView';
-import SettingsView from './SettingsView';
-import NewMessageView from './NewMessageView';
-
-import KeyboardSpacer from 'react-native-keyboard-spacer';
-
-import { login } from '../Network/APIController';
+import LoginView from './LoginView';
 
 export default class LoginView extends Component {
 	constructor(props) {
@@ -46,7 +40,17 @@ export default class LoginView extends Component {
 	}
 
   _onLoginButtonPress() {
-
+    this.props.navigator.push({
+      component: LoginView,
+      title: 'WhosApp',
+      passProps: {
+        authToken: this.state.authToken,
+      },
+      leftButtonTitle: '⚙',
+      rightButtonTitle: '➕',
+      onLeftButtonPress: () => this._onLeftButtonPress(),
+      onRightButtonPress: () => this._onRightButtonPress(),
+    });
   }
 
   _onRegisterButtonPress() {
