@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 
-import LoginView from './Components/LoginView';
+import FirstView from './Components/FirstView';
 
 export default class WhosApp extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ export default class WhosApp extends Component {
       <NavigatorIOS
         ref='nav'
         initialRoute={{
-          component: LoginView,
+          component: FirstView,
           title: 'Login',
           navigationBarHidden: true
         }}
@@ -38,4 +38,3 @@ export default class WhosApp extends Component {
 }
 
 AppRegistry.registerComponent('WhosApp', () => WhosApp);
-
