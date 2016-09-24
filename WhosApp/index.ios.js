@@ -25,7 +25,7 @@ export default class WhosApp extends Component {
         ref='nav'
         initialRoute={{
           component: FirstView,
-          title: 'Login',
+          title: '',
           navigationBarHidden: true
         }}
 
