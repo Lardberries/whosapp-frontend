@@ -73,9 +73,19 @@ export default class LoginView extends Component {
     });
   }
 
-  _focusNextField = (nextField) => {
+  _focusField = (nextField) => {
     this.refs[nextField].focus();
   };
+
+  // If they hit next and there is no username, go to username
+  // otherwise submit
+  _onPasswordSubmit() {
+    if (this.state.username !== '') {
+      this._onLoginButtonPress();
+    } else {
+      this._focusField('username');
+    }
+  }
 
 	render() {
 		return (
@@ -85,24 +95,24 @@ export default class LoginView extends Component {
           <View style={styles.field}>
             <Text style={styles.fieldHeader}>USERNAME</Text>
             <TextInput
-              ref='1'
+              ref='username'
               style={styles.fieldInput}
               autoCapitalize='none'
               autoCorrect={false}
               onChangeText={(username) => this.setState({username})}
               returnKeyType='next'
-              onSubmitEditing={() => this._focusNextField('2')}
+              onSubmitEditing={() => this._focusField('password')}
             />
           </View>
           <View style={styles.field}>
             <Text style={styles.fieldHeader}>PASSWORD</Text>
             <TextInput
-              ref='2'
+              ref='password'
               style={styles.fieldInput}
               onChangeText={(password) => this.setState({password})}
               secureTextEntry={true}
-              returnKeyType='go'
-              onSubmitEditing={() => this._onLoginButtonPress()}
+              returnKeyType='next'
+              onSubmitEditing={() => this._onPasswordSubmit()}
             />
           </View>
         </View>
