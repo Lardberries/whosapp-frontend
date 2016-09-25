@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import dismissKeyboard from 'dismissKeyboard';
+import Spinner from 'react-native-spinkit';
 
 import ThreadView from './ThreadView';
 import SettingsView from './SettingsView';
@@ -22,6 +23,7 @@ export default class LoginView extends Component {
 			username: '',
 			password: '',
       authToken: '',
+      loggingIn: false,
 		};
 	}
 
@@ -41,6 +43,9 @@ export default class LoginView extends Component {
 
 	_onLoginButtonPress() {
     dismissKeyboard();
+    this.setState({
+      loggingIn: true,
+    })
     let username = this.state.username;
     let password = this.state.password;
     loginPromise = login(username, password);
@@ -123,7 +128,8 @@ export default class LoginView extends Component {
         </View>
         <TouchableHighlight style={styles.buttonContainer} onPress={() => this._onLoginButtonPress()}>
           <View style={styles.button}>
-            <Text style={styles.buttonText}>Log In</Text>
+            {this.state.loggingIn && <Spinner style={styles.spinner} type='Bounce' color='#ffffff'/>}
+            {!this.state.loggingIn && <Text style={styles.buttonText}>Log In</Text>}
           </View>
         </TouchableHighlight>
         <KeyboardSpacer/>
@@ -184,7 +190,7 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     borderRadius: 40,
-    backgroundColor: '#E5A9EA',
+    backgroundColor: '#33cc77',
     justifyContent: 'center',
     alignItems: 'center'
   },
