@@ -40,6 +40,7 @@ export default class LoginView extends Component {
   }
 
 	_onLoginButtonPress() {
+    dismissKeyboard();
     let username = this.state.username;
     let password = this.state.password;
     loginPromise = login(username, password);
@@ -82,7 +83,7 @@ export default class LoginView extends Component {
   // otherwise submit
   _onPasswordSubmit() {
     if (this.state.username !== '') {
-      dismissKeyboard
+      dismissKeyboard();
       this._onLoginButtonPress();
     } else {
       this._focusField('username');
@@ -114,7 +115,7 @@ export default class LoginView extends Component {
               style={styles.fieldInput}
               onChangeText={(password) => this.setState({password})}
               secureTextEntry={true}
-              blurOnSubmit={this.state.username !== ''}
+              blurOnSubmit={false}
               returnKeyType='next'
               onSubmitEditing={() => this._onPasswordSubmit()}
             />
