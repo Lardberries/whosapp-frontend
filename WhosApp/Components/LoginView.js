@@ -24,6 +24,7 @@ export default class LoginView extends Component {
 			password: '',
       authToken: '',
       loggingIn: false,
+      logInFailed: false,
 		};
 	}
 
@@ -56,9 +57,15 @@ export default class LoginView extends Component {
         this._showThreads();
       } else {
         // Handle login failure...
-        this.setState({
-          loggingIn: false,
-        })
+        setTimeout(
+          () => {
+            this.setState({
+              loggingIn: false,
+              logInFailed: true,
+            })
+          },
+          300
+        );
       }
     });
 	}
@@ -128,9 +135,10 @@ export default class LoginView extends Component {
               onSubmitEditing={() => this._onPasswordSubmit()}
             />
           </View>
+          {this.state.logInFailed && <Text style={styles.errorText}>Sorry, we can't find a match.</Text>}
         </View>
         <TouchableHighlight style={styles.buttonContainer} onPress={() => this._onLoginButtonPress()}>
-          <View style={styles.button}>
+          <View style={[styles.button, this.state.loggingIn && styles.workingButton]}>
             {this.state.loggingIn && <Spinner size={23} style={styles.spinner} type='Bounce' color='#ffffff'/>}
             {!this.state.loggingIn && <Text style={styles.buttonText}>Log In</Text>}
           </View>
@@ -184,6 +192,12 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     fontSize: 17,
   },
+  errorText: {
+    fontFamily: 'Avenir',
+    fontWeight: '500',
+    fontSize: 12,
+    color: '#E92754'
+  },
   buttonContainer: {
     marginBottom: 20,
     width: 225,
@@ -196,6 +210,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#E5A9EA',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  workingButton: {
+    backgroundColor: '#B9C0C7',
   },
   buttonText: {
     fontFamily: 'Avenir',
