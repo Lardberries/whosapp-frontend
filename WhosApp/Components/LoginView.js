@@ -7,6 +7,7 @@ import {
   View
 } from 'react-native';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
+import dismissKeyboard from 'dismissKeyboard';
 
 import ThreadView from './ThreadView';
 import SettingsView from './SettingsView';
@@ -81,6 +82,7 @@ export default class LoginView extends Component {
   // otherwise submit
   _onPasswordSubmit() {
     if (this.state.username !== '') {
+      dismissKeyboard
       this._onLoginButtonPress();
     } else {
       this._focusField('username');
@@ -100,6 +102,7 @@ export default class LoginView extends Component {
               autoCapitalize='none'
               autoCorrect={false}
               onChangeText={(username) => this.setState({username})}
+              blurOnSubmit={false}
               returnKeyType='next'
               onSubmitEditing={() => this._focusField('password')}
             />
@@ -111,6 +114,7 @@ export default class LoginView extends Component {
               style={styles.fieldInput}
               onChangeText={(password) => this.setState({password})}
               secureTextEntry={true}
+              blurOnSubmit={this.state.username !== ''}
               returnKeyType='next'
               onSubmitEditing={() => this._onPasswordSubmit()}
             />
