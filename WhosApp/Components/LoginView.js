@@ -128,7 +128,7 @@ export default class LoginView extends Component {
         </View>
         <TouchableHighlight style={styles.buttonContainer} onPress={() => this._onLoginButtonPress()}>
           <View style={styles.button}>
-            {this.state.loggingIn && <Spinner style={styles.spinner} type='Bounce' color='#ffffff'/>}
+            {this.state.loggingIn && <Spinner size={23} style={styles.spinner} type='Bounce' color='#ffffff'/>}
             {!this.state.loggingIn && <Text style={styles.buttonText}>Log In</Text>}
           </View>
         </TouchableHighlight>
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     borderRadius: 40,
-    backgroundColor: '#33cc77',
+    backgroundColor: '#E5A9EA',
     justifyContent: 'center',
     alignItems: 'center'
   },
