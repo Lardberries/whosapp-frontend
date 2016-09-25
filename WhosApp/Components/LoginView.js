@@ -55,7 +55,7 @@ export default class LoginView extends Component {
 
   _setAuthToken(authToken) {
     this.setState({
-      authToken: loginResult.result,
+      authToken: authToken,
     });
   }
 
