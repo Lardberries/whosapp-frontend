@@ -56,6 +56,9 @@ export default class LoginView extends Component {
         this._showThreads();
       } else {
         // Handle login failure...
+        this.setState({
+          loggingIn: false,
+        })
       }
     });
 	}
