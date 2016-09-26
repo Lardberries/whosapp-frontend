@@ -1,7 +1,6 @@
 package com.whosapp;
 
 import com.facebook.react.ReactActivity;
-import com.react.rnspinkit.RNSpinkitPackage;
 
 public class MainActivity extends ReactActivity {
 
