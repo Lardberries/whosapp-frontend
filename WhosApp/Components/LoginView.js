@@ -157,30 +157,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginBottom: 40,
   },
-  field: {
-    marginBottom: 5,
-    borderBottomWidth: 1,
-    borderBottomColor: '#CCCCCC',
-    paddingLeft: 2,
-    paddingRight: 2
-  },
-  fieldHeader: {
-    fontFamily: 'Avenir',
-    fontWeight: '500',
-    fontSize: 11,
-    letterSpacing: 0.9,
-    color: '#9A9FA7',
-    marginTop: 10,
-    marginBottom: 5,
-  },
-  fieldInput: {
-    height: 30,
-    width: 270,
-    flex: 1,
-    fontFamily: 'Avenir',
-    fontWeight: '500',
-    fontSize: 17,
-  },
   errorText: {
     fontFamily: 'Avenir',
     fontWeight: '500',
@@ -191,21 +167,4 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: 225,
   },
-  button: {
-    flex: 1,
-    borderRadius: 40,
-    backgroundColor: '#E5A9EA',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  workingButton: {
-    backgroundColor: '#B9C0C7',
-  },
-  buttonText: {
-    fontFamily: 'Avenir',
-    fontWeight: '700',
-    fontSize: 17,
-    letterSpacing: 0.8,
-    color: 'white',
-  }
 });
