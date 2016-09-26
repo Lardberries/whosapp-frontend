@@ -13,6 +13,7 @@ import Spinner from 'react-native-spinkit';
 import ThreadView from './ThreadView';
 import SettingsView from './SettingsView';
 import NewMessageView from './NewMessageView';
+import InputField from './InputField';
 
 import { login } from '../Network/APIController';
 
@@ -110,31 +111,19 @@ export default class LoginView extends Component {
 			<View style={styles.container}>
         <Text style={styles.title}>Log In</Text>
         <View style={styles.fields}>
-          <View style={styles.field}>
-            <Text style={styles.fieldHeader}>USERNAME</Text>
-            <TextInput
-              ref='username'
-              style={styles.fieldInput}
-              autoCapitalize='none'
-              autoCorrect={false}
-              onChangeText={(username) => this.setState({username})}
-              blurOnSubmit={false}
-              returnKeyType='next'
-              onSubmitEditing={() => this._focusField('password')}
-            />
-          </View>
-          <View style={styles.field}>
-            <Text style={styles.fieldHeader}>PASSWORD</Text>
-            <TextInput
-              ref='password'
-              style={styles.fieldInput}
-              onChangeText={(password) => this.setState({password})}
-              secureTextEntry={true}
-              blurOnSubmit={false}
-              returnKeyType='next'
-              onSubmitEditing={() => this._onPasswordSubmit()}
-            />
-          </View>
+          <InputField
+            ref='username'
+            onChangeText={(username) => this.setState({username})}
+            onSubmitEditing={() => this._focusField('password')}
+            header='USERNAME'
+          />
+          <InputField
+            ref='password'
+            onChangeText={(password) => this.setState({password})}
+            onSubmitEditing={() => this._onPasswordSubmit()}
+            header='PASSWORD'
+            secureTextEntry={true}
+          />
           {this.state.logInFailed && <Text style={styles.errorText}>Sorry, we can't find a match.</Text>}
         </View>
         <TouchableHighlight style={styles.buttonContainer} onPress={() => this._onLoginButtonPress()}>
