@@ -7,7 +7,7 @@ import {
   View
 } from 'react-native';
 
-// Will take a header, the next field reference (for focusing)
+// Will take a header, onChangeText, onSubmitEditing, secureTextEntry (default false)
 export default class InputField extends Component {
   focus = () => {
     this.refs['textInput'].focus();
@@ -26,6 +26,7 @@ export default class InputField extends Component {
           blurOnSubmit={false}
           returnKeyType='next'
           onSubmitEditing={this.props.onSubmitEditing}
+          secureTextEntry={this.props.secureTextEntry}
         />
       </View>
     );
