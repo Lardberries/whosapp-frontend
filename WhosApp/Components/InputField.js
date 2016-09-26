@@ -7,7 +7,7 @@ import {
   View
 } from 'react-native';
 
-// Will take a header, onChangeText, onSubmitEditing, secureTextEntry (default false)
+// Will take a header, onChangeText, onSubmitEditing, autoFocus, secureTextEntry (default false)
 export default class InputField extends Component {
   focus = () => {
     this.refs['textInput'].focus();
@@ -20,6 +20,7 @@ export default class InputField extends Component {
         <TextInput
           ref='textInput'
           style={styles.fieldInput}
+          autoFocus={this.props.autoFocus}
           autoCapitalize='none'
           autoCorrect={false}
           onChangeText={this.props.onChangeText}
