@@ -8,12 +8,12 @@ import {
 } from 'react-native';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import dismissKeyboard from 'dismissKeyboard';
-import Spinner from 'react-native-spinkit';
 
 import ThreadView from './ThreadView';
 import SettingsView from './SettingsView';
 import NewMessageView from './NewMessageView';
 import InputField from './InputField';
+import Button from './Button';
 
 import { login } from '../Network/APIController';
 
@@ -126,12 +126,12 @@ export default class LoginView extends Component {
           />
           {this.state.logInFailed && <Text style={styles.errorText}>Sorry, we can't find a match.</Text>}
         </View>
-        <TouchableHighlight style={styles.buttonContainer} onPress={() => this._onLoginButtonPress()}>
-          <View style={[styles.button, this.state.loggingIn && styles.workingButton]}>
-            {this.state.loggingIn && <Spinner size={23} style={styles.spinner} type='Bounce' color='#ffffff'/>}
-            {!this.state.loggingIn && <Text style={styles.buttonText}>Log In</Text>}
-          </View>
-        </TouchableHighlight>
+        <Button
+          style={styles.buttonContainer}
+          isWorking={this.state.loggingIn}
+          buttonText='Log In'
+          onPress={() => this._onLoginButtonPress()}
+        />
         <KeyboardSpacer/>
 			</View>
 		);
@@ -190,8 +190,6 @@ const styles = StyleSheet.create({
   buttonContainer: {
     marginBottom: 20,
     width: 225,
-    height: 48,
-    borderRadius: 40,
   },
   button: {
     flex: 1,
