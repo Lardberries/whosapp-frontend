@@ -9,33 +9,26 @@ import {
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import dismissKeyboard from 'dismissKeyboard';
 
-import UsernameView from './UsernameView';
 import InputField from './InputField';
 import Button from './Button';
 
-export default class NameView extends Component {
+//TODO: combine similarities from this and NameView
+
+export default class UsernameView extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			firstName: '',
-			lastName: '',
+			userName: '',
 		};
 	}
 
-  _focusField = (nextField) => {
-    this.refs[nextField].focus();
-  };
-
   _nextScreen() {
-    var names = [this.props.firstName, this.props.lastName];
-    // combine them including a space only if necessary
-    var fullName = names.filter((name) => {return name}).join(' ');
-
     // push the next step in the process
     this.props.navigator.push({
-      component: UsernameView,
+      component: PasswordView,
       passProps: {
-        fullName: fullName,
+        fullName: this.props.fullName,
+        userName: this.state.userName,
       },
     });
   }
@@ -43,25 +36,19 @@ export default class NameView extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-        <Text style={styles.title}>What's your name?</Text>
+        <Text style={styles.title}>Pick a username</Text>
         <View style={styles.fields}>
           <InputField
-            ref='firstname'
-            onChangeText={(firstName) => this.setState({firstName})}
-            onSubmitEditing={() => this._focusField('lastname')}
-            header='FIRST NAME'
+            ref='username'
             autoFocus={true}
-          />
-          <InputField
-            ref='lastname'
-            onChangeText={(lastName) => this.setState({lastName})}
+            onChangeText={(userName) => this.setState({userName})}
             onSubmitEditing={() => this._nextScreen()}
-            header='LAST NAME'
+            header='USERNAME'
           />
         </View>
         <Button
           style={styles.buttonContainer}
-          buttonText='Sign Up'
+          buttonText='Continue'
           onPress={() => this._nextScreen()}
         />
         <KeyboardSpacer/>

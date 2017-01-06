@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import LoginView from './LoginView';
+import NameView from './NameView';
 
 export default class FirstView extends Component {
 	constructor(props) {
@@ -46,7 +47,9 @@ export default class FirstView extends Component {
   }
 
   _onRegisterButtonPress() {
-
+    this.props.navigator.push({
+      component: NameView,
+    });
   }
 }
 
